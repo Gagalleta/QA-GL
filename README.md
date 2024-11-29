@@ -12,7 +12,7 @@ Además, permite guardar una canción como favoritos.
 ## **Pasos para levantar la API Backend**
 1. **Clonar este repositorio y entrar a la carpeta del proyecto:**
    ```bash
-   git clone https://gitlab.com/anasanmartiin/itunes-back.git
+   git clone https://github.com/GrupoLagos/itunes-back-main.git
 2. **Instalar las dependencias:**
    ```bash
    npm install
