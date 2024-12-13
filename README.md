@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Proyecto: Información de Bandas Musicales - Backend
 
 ## **Descripción General**
@@ -34,3 +35,7 @@ Accede a los endpoints disponibles en la dirección: http://localhost:3000
 La documentación de la API está disponible en Swagger.
 
 Una vez que el servidor esté en ejecución, accede a la URL: **http://localhost:3000/api-docs** para información detallada de cada endpoint.
+=======
+# QA-GL
+Test QA engineer para Grupo Lagos :)
+>>>>>>> origin/main
