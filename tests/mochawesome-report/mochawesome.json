@@ -1,0 +1,157 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 2,
+    "passes": 2,
+    "pending": 0,
+    "failures": 0,
+    "start": "2024-12-12T16:04:10.571Z",
+    "end": "2024-12-12T16:04:12.467Z",
+    "duration": 1896,
+    "testsRegistered": 2,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "94b8d947-639c-4130-9834-023192b0ae15",
+      "title": "",
+      "fullFile": "/Users/carosoto/Documentos/Proyectos/itunes-back-main/tests/tests/frontend/frontendTests.spec.js",
+      "file": "/tests/frontend/frontendTests.spec.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "bd62d249-58d2-484c-9da3-89895b8fdf4f",
+          "title": "Pruebas Frontend - Tabla de Canciones",
+          "fullFile": "/Users/carosoto/Documentos/Proyectos/itunes-back-main/tests/tests/frontend/frontendTests.spec.js",
+          "file": "/tests/frontend/frontendTests.spec.js",
+          "beforeHooks": [
+            {
+              "title": "\"before all\" hook in \"Pruebas Frontend - Tabla de Canciones\"",
+              "fullTitle": "Pruebas Frontend - Tabla de Canciones \"before all\" hook in \"Pruebas Frontend - Tabla de Canciones\"",
+              "timedOut": false,
+              "duration": 967,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "driver = await new Builder().forBrowser('chrome').build();",
+              "err": {},
+              "uuid": "24ec3cc0-f96c-476b-8c3a-794e782c7ecb",
+              "parentUUID": "bd62d249-58d2-484c-9da3-89895b8fdf4f",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "afterHooks": [
+            {
+              "title": "\"after all\" hook in \"Pruebas Frontend - Tabla de Canciones\"",
+              "fullTitle": "Pruebas Frontend - Tabla de Canciones \"after all\" hook in \"Pruebas Frontend - Tabla de Canciones\"",
+              "timedOut": false,
+              "duration": 80,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await driver.quit();",
+              "err": {},
+              "uuid": "a8f02f3d-2685-4e05-a143-2dea765122a5",
+              "parentUUID": "bd62d249-58d2-484c-9da3-89895b8fdf4f",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "tests": [
+            {
+              "title": "Debe mostrar canciones al buscar una banda válida",
+              "fullTitle": "Pruebas Frontend - Tabla de Canciones Debe mostrar canciones al buscar una banda válida",
+              "timedOut": false,
+              "duration": 639,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await driver.get('http://localhost:8080');\nconst searchInput = await driver.findElement(By.css('input[type=\"text\"]'));\nawait searchInput.sendKeys('Radiohead');\nconst searchButton = await driver.findElement(By.css('button'));\nawait searchButton.click();\nawait driver.wait(until.elementLocated(By.css('table tbody tr')), 5000);\nconst rows = await driver.findElements(By.css('table tbody tr'));\nassert.ok(rows.length > 0, 'La tabla debe contener filas');",
+              "err": {},
+              "uuid": "bfa1d97b-ee64-495b-8319-07430f47ca99",
+              "parentUUID": "bd62d249-58d2-484c-9da3-89895b8fdf4f",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "No debe mostrar canciones al buscar una banda inexistente",
+              "fullTitle": "Pruebas Frontend - Tabla de Canciones No debe mostrar canciones al buscar una banda inexistente",
+              "timedOut": false,
+              "duration": 206,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await driver.get('http://localhost:8080');\nconst searchInput = await driver.findElement(By.css('input[type=\"text\"]'));\nawait searchInput.clear();\nawait searchInput.sendKeys('BandaInexistente');\nconst searchButton = await driver.findElement(By.css('button'));\nawait searchButton.click();\nconst rows = await driver.findElements(By.css('table tbody tr'));\nassert.strictEqual(rows.length, 0, 'La tabla no debe contener filas');",
+              "err": {},
+              "uuid": "e2f7d4f6-7ce0-431d-bcbc-ccd7332f787b",
+              "parentUUID": "bd62d249-58d2-484c-9da3-89895b8fdf4f",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "bfa1d97b-ee64-495b-8319-07430f47ca99",
+            "e2f7d4f6-7ce0-431d-bcbc-ccd7332f787b"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 845,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "11.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": null,
+      "version": "6.2.0"
+    }
+  }
+}

@@ -1,0 +1,176 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 5,
+    "passes": 5,
+    "pending": 0,
+    "failures": 0,
+    "start": "2024-12-13T13:17:45.352Z",
+    "end": "2024-12-13T13:17:45.530Z",
+    "duration": 178,
+    "testsRegistered": 5,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "76857072-30d7-4987-94fe-95ae244748ea",
+      "title": "",
+      "fullFile": "/Users/carosoto/Documentos/Proyectos/itunes-back-main/tests/backend/backend.spec.js",
+      "file": "/tests/backend/backend.spec.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "95f0d558-62aa-4ba6-aa9b-db78a90509be",
+          "title": "Pruebas de Backend",
+          "fullFile": "/Users/carosoto/Documentos/Proyectos/itunes-back-main/tests/backend/backend.spec.js",
+          "file": "/tests/backend/backend.spec.js",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Debe devolver error 400 si falta un parámetro obligatorio en POST /favoritos",
+              "fullTitle": "Pruebas de Backend Debe devolver error 400 si falta un parámetro obligatorio en POST /favoritos",
+              "timedOut": false,
+              "duration": 15,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const res = await chai.request(server).post('/favoritos').send({\n  nombre_banda: 'Radiohead',\n  cancion_id: 123,\n});\nexpect(res).to.have.status(400);\nexpect(res.body).to.have.property('error').that.equals('Campos obligatorios: nombre_banda, cancion_id, usuario, ranking');",
+              "err": {},
+              "uuid": "531240f2-8b9a-47a4-9fbf-243f6973fe4b",
+              "parentUUID": "95f0d558-62aa-4ba6-aa9b-db78a90509be",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Debe devolver error 404 si la canción no existe en POST /favoritos",
+              "fullTitle": "Pruebas de Backend Debe devolver error 404 si la canción no existe en POST /favoritos",
+              "timedOut": false,
+              "duration": 74,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const res = await chai.request(server).post('/favoritos').send({\n  nombre_banda: 'Radiohead',\n  cancion_id: 999999, // ID inválido\n  usuario: 'Juan',\n  ranking: '5/5',\n});\nexpect(res).to.have.status(404);\nexpect(res.body).to.have.property('error').that.equals('La canción con ese Id no existe.');",
+              "err": {},
+              "uuid": "0beb837b-9cda-4f8a-807d-3f2e36b0709e",
+              "parentUUID": "95f0d558-62aa-4ba6-aa9b-db78a90509be",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Debe devolver error 400 al intentar agregar más de 5 canciones como favoritas",
+              "fullTitle": "Pruebas de Backend Debe devolver error 400 al intentar agregar más de 5 canciones como favoritas",
+              "timedOut": false,
+              "duration": 65,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// IDs válidos basados en tus datos de muestra\nconst validIds = [\n  1097862231,\n  1111577949,\n  1111577770,\n  1111577965,\n  1111578103,\n];\n// Agregar 5 canciones\nfor (let i = 0; i < validIds.length; i++) {\n  await chai.request(server).post('/favoritos').send({\n    nombre_banda: 'Radiohead',\n    cancion_id: validIds[i],\n    usuario: 'Juan',\n    ranking: `${i + 1}/5`,\n  });\n}\n// Intentar agregar una sexta canción con otro ID válido\nconst res = await chai.request(server).post('/favoritos').send({\n  nombre_banda: 'Radiohead',\n  cancion_id: 1111578064, // Otro ID válido\n  usuario: 'Juan',\n  ranking: '6/5',\n});\nexpect(res).to.have.status(400);\nexpect(res.body).to.have.property('error').that.equals('No puedes agregar más de 5 canciones como favoritas.');",
+              "err": {},
+              "uuid": "2eb62a46-f66a-438f-b351-02cb33406f11",
+              "parentUUID": "95f0d558-62aa-4ba6-aa9b-db78a90509be",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Debe devolver la lista de favoritos correctamente en GET /misfavoritos",
+              "fullTitle": "Pruebas de Backend Debe devolver la lista de favoritos correctamente en GET /misfavoritos",
+              "timedOut": false,
+              "duration": 3,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const res = await chai.request(server).get('/misfavoritos');\nexpect(res).to.have.status(200);\nexpect(res.body).to.have.property('favoritos').that.is.an('array');",
+              "err": {},
+              "uuid": "7b881f31-57c7-46ac-9944-0cdb66067e86",
+              "parentUUID": "95f0d558-62aa-4ba6-aa9b-db78a90509be",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Debe manejar correctamente la caché en GET /search_tracks",
+              "fullTitle": "Pruebas de Backend Debe manejar correctamente la caché en GET /search_tracks",
+              "timedOut": false,
+              "duration": 18,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// Primera búsqueda\nconst firstRes = await chai.request(server).get('/search_tracks?name=Radiohead');\nexpect(firstRes).to.have.status(200);\nexpect(firstRes.body).to.have.property('total_albumes');\n// Segunda búsqueda (desde caché)\nconst secondRes = await chai.request(server).get('/search_tracks?name=Radiohead');\nexpect(secondRes).to.have.status(200);\nexpect(secondRes.body).to.have.property('total_albumes');",
+              "err": {},
+              "uuid": "87a89321-7e17-4bea-8f3d-5798c564e7d3",
+              "parentUUID": "95f0d558-62aa-4ba6-aa9b-db78a90509be",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "531240f2-8b9a-47a4-9fbf-243f6973fe4b",
+            "0beb837b-9cda-4f8a-807d-3f2e36b0709e",
+            "2eb62a46-f66a-438f-b351-02cb33406f11",
+            "7b881f31-57c7-46ac-9944-0cdb66067e86",
+            "87a89321-7e17-4bea-8f3d-5798c564e7d3"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 175,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 15000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 15000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "11.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": null,
+      "version": "6.2.0"
+    }
+  }
+}

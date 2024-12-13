@@ -1,0 +1,31 @@
+{
+  "name": "itunes-back",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+      "test": "mocha tests/**/*.spec.js --timeout 15000 --reporter mochawesome",
+      "test:backend": "mocha tests/backend/*.spec.js --timeout 15000 --reporter mochawesome",
+      "test:frontend": "mocha tests/frontend/**/*.spec.js --timeout 15000 --reporter mochawesome",
+      "start": "nodemon src/app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+      "cors": "^2.8.5",
+      "express": "^4.21.1",
+      "node-cache": "^5.1.2",
+      "swagger-jsdoc": "^6.2.8",
+      "swagger-ui-express": "^5.0.1"
+  },
+  "devDependencies": {
+      "axios": "^1.7.9",
+      "chai-http": "^5.1.1",
+      "mocha": "^11.0.1",
+      "mochawesome": "^7.1.3",
+      "mochawesome-report-generator": "^6.2.0",
+      "nock": "^13.5.6",
+      "nodemon": "^3.1.7"
+  }
+}

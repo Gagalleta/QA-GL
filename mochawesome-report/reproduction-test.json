@@ -1,0 +1,234 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 5,
+    "passes": 5,
+    "pending": 0,
+    "failures": 0,
+    "start": "2024-12-12T22:56:27.279Z",
+    "end": "2024-12-12T22:56:42.151Z",
+    "duration": 14872,
+    "testsRegistered": 5,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "6be8ee0b-86cc-490e-8575-8fafbb49a1bf",
+      "title": "",
+      "fullFile": "/Users/carosoto/Documentos/Proyectos/itunes-back-main/tests/frontend/reproduction.spec.js",
+      "file": "/tests/frontend/reproduction.spec.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "dcae0b0a-0ba3-4242-a25d-1867082c372a",
+          "title": "Pruebas de Reproducción - Información de Bandas Musicales",
+          "fullFile": "/Users/carosoto/Documentos/Proyectos/itunes-back-main/tests/frontend/reproduction.spec.js",
+          "file": "/tests/frontend/reproduction.spec.js",
+          "beforeHooks": [
+            {
+              "title": "\"before all\" hook in \"Pruebas de Reproducción - Información de Bandas Musicales\"",
+              "fullTitle": "Pruebas de Reproducción - Información de Bandas Musicales \"before all\" hook in \"Pruebas de Reproducción - Información de Bandas Musicales\"",
+              "timedOut": false,
+              "duration": 1828,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "driver = await new Builder().forBrowser('chrome').build();",
+              "err": {},
+              "uuid": "6b3376ce-ff08-4347-9571-84957f8cb56b",
+              "parentUUID": "dcae0b0a-0ba3-4242-a25d-1867082c372a",
+              "isHook": true,
+              "skipped": false
+            },
+            {
+              "title": "\"before each\" hook in \"Pruebas de Reproducción - Información de Bandas Musicales\"",
+              "fullTitle": "Pruebas de Reproducción - Información de Bandas Musicales \"before each\" hook in \"Pruebas de Reproducción - Información de Bandas Musicales\"",
+              "timedOut": false,
+              "duration": 115,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// Realiza la búsqueda inicial de \"Iron Maiden\" antes de cada prueba\nawait driver.get('http://localhost:8080');\nconst searchInput = await driver.findElement(By.css('input[type=\"text\"]'));\nawait searchInput.clear();\nawait searchInput.sendKeys('Iron Maiden');\nconst searchButton = await driver.findElement(By.css('button'));\nawait searchButton.click();\nawait driver.wait(until.elementLocated(By.css('table tbody tr')), 5000);",
+              "err": {},
+              "uuid": "325f4be4-020d-459d-a064-623d966c9fe8",
+              "parentUUID": "dcae0b0a-0ba3-4242-a25d-1867082c372a",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "afterHooks": [
+            {
+              "title": "\"after all\" hook in \"Pruebas de Reproducción - Información de Bandas Musicales\"",
+              "fullTitle": "Pruebas de Reproducción - Información de Bandas Musicales \"after all\" hook in \"Pruebas de Reproducción - Información de Bandas Musicales\"",
+              "timedOut": false,
+              "duration": 74,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await driver.quit();",
+              "err": {},
+              "uuid": "a5964240-1fb6-4175-ade8-3e0629600c22",
+              "parentUUID": "dcae0b0a-0ba3-4242-a25d-1867082c372a",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "tests": [
+            {
+              "title": "GL-FR-09: Debe reproducir la previsualización de una canción",
+              "fullTitle": "Pruebas de Reproducción - Información de Bandas Musicales GL-FR-09: Debe reproducir la previsualización de una canción",
+              "timedOut": false,
+              "duration": 5038,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const audioElement = await obtenerElementoAudioPrimeraCancion();\n// Forzar reproducción\nawait driver.executeScript(\"arguments[0].play();\", audioElement);\n// Validar que la canción no está en pausa\nconst isPaused = await driver.executeScript(\"return arguments[0].paused;\", audioElement);\nassert.strictEqual(isPaused, false, 'La canción debe estar reproduciéndose.');\n// Esperar 5 segundos para confirmar que el tiempo de reproducción avanza\nconst startTime = await driver.executeScript(\"return arguments[0].currentTime;\", audioElement);\nawait driver.sleep(5000); // Pausa de 5 segundos\nconst endTime = await driver.executeScript(\"return arguments[0].currentTime;\", audioElement);\nassert.ok(endTime > startTime, 'El tiempo de reproducción debe avanzar.');\nconsole.log(`Tiempo inicial: ${startTime}, Tiempo final: ${endTime}`);",
+              "err": {},
+              "uuid": "a31171e9-f55d-456c-98f5-a00afa13e10b",
+              "parentUUID": "dcae0b0a-0ba3-4242-a25d-1867082c372a",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "GL-FR-10: Debe comenzar a descargar una canción",
+              "fullTitle": "Pruebas de Reproducción - Información de Bandas Musicales GL-FR-10: Debe comenzar a descargar una canción",
+              "timedOut": false,
+              "duration": 243,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const audioElement = await obtenerElementoAudioPrimeraCancion();\nconst src = await audioElement.getAttribute('src'); // Obtener el enlace del audio\nassert.ok(src.includes('.m4a'), 'El enlace de descarga debe ser válido y apuntar a un archivo de audio.');\n// Verificar que el archivo es accesible para descarga\nconst response = await axios.head(src);\nassert.strictEqual(response.status, 200, 'El archivo de audio debe ser accesible para descarga.');",
+              "err": {},
+              "uuid": "0659d590-84a3-4129-9d8f-f31c229340ed",
+              "parentUUID": "dcae0b0a-0ba3-4242-a25d-1867082c372a",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "GL-FR-11: Debe cambiar la velocidad de reproducción",
+              "fullTitle": "Pruebas de Reproducción - Información de Bandas Musicales GL-FR-11: Debe cambiar la velocidad de reproducción",
+              "timedOut": false,
+              "duration": 3031,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const audioElement = await obtenerElementoAudioPrimeraCancion();\nawait driver.executeScript(\"arguments[0].play();\", audioElement); // Reproducir la canción\n// Cambiar velocidad de reproducción\nawait driver.executeScript(\"arguments[0].playbackRate = 1.5;\", audioElement);\nconst playbackRate = await driver.executeScript(\"return arguments[0].playbackRate;\", audioElement);\nassert.strictEqual(playbackRate, 1.5, 'La velocidad de reproducción debe ser 1.5x.');\n// Esperar y confirmar la reproducción con la velocidad ajustada\nawait driver.sleep(3000); // Pausa para escuchar el cambio",
+              "err": {},
+              "uuid": "3f1c30b2-408b-4bbc-9048-4a456d7d643d",
+              "parentUUID": "dcae0b0a-0ba3-4242-a25d-1867082c372a",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "GL-FR-12: Debe detener la reproducción de la canción",
+              "fullTitle": "Pruebas de Reproducción - Información de Bandas Musicales GL-FR-12: Debe detener la reproducción de la canción",
+              "timedOut": false,
+              "duration": 24,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const audioElement = await obtenerElementoAudioPrimeraCancion();\nawait driver.executeScript(\"arguments[0].play();\", audioElement); // Reproducir la canción\n// Detener la canción\nawait driver.executeScript(\"arguments[0].pause();\", audioElement);\nconst isPaused = await driver.executeScript(\"return arguments[0].paused;\", audioElement);\nassert.strictEqual(isPaused, true, 'La canción debe estar detenida.');",
+              "err": {},
+              "uuid": "082dcedc-bdfa-480f-9576-fa5db59ec7a8",
+              "parentUUID": "dcae0b0a-0ba3-4242-a25d-1867082c372a",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "GL-FR-13: Debe silenciar la reproducción de la canción",
+              "fullTitle": "Pruebas de Reproducción - Información de Bandas Musicales GL-FR-13: Debe silenciar la reproducción de la canción",
+              "timedOut": false,
+              "duration": 3029,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const audioElement = await obtenerElementoAudioPrimeraCancion();\nawait driver.executeScript(\"arguments[0].play();\", audioElement); // Reproducir la canción\n// Silenciar el audio\nawait driver.executeScript(\"arguments[0].muted = true;\", audioElement);\nconst isMuted = await driver.executeScript(\"return arguments[0].muted;\", audioElement);\nassert.strictEqual(isMuted, true, 'El audio debe estar silenciado.');\n// Esperar y confirmar el estado silenciado\nawait driver.sleep(3000); // Pausa para verificar el silencio",
+              "err": {},
+              "uuid": "a924ea83-7ddc-460a-9094-7c1c860a3271",
+              "parentUUID": "dcae0b0a-0ba3-4242-a25d-1867082c372a",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "a31171e9-f55d-456c-98f5-a00afa13e10b",
+            "0659d590-84a3-4129-9d8f-f31c229340ed",
+            "3f1c30b2-408b-4bbc-9048-4a456d7d643d",
+            "082dcedc-bdfa-480f-9576-fa5db59ec7a8",
+            "a924ea83-7ddc-460a-9094-7c1c860a3271"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 11365,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 30000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 30000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "11.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "reproduction-test",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportFilename": "reproduction-test"
+      },
+      "version": "6.2.0"
+    }
+  }
+}

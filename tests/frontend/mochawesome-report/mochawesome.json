@@ -1,0 +1,276 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 8,
+    "passes": 7,
+    "pending": 0,
+    "failures": 1,
+    "start": "2024-12-12T17:16:09.431Z",
+    "end": "2024-12-12T17:16:23.187Z",
+    "duration": 13756,
+    "testsRegistered": 8,
+    "passPercent": 87.5,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "f5d9690d-ee6c-475a-9545-0a8cfbdf3fd2",
+      "title": "",
+      "fullFile": "/Users/carosoto/Documentos/Proyectos/itunes-back-main/tests/frontend/frontendTests.spec.js",
+      "file": "/frontendTests.spec.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "451d1c89-c564-4429-98af-1a23130ccf9e",
+          "title": "Pruebas Frontend - Información de Bandas Musicales",
+          "fullFile": "/Users/carosoto/Documentos/Proyectos/itunes-back-main/tests/frontend/frontendTests.spec.js",
+          "file": "/frontendTests.spec.js",
+          "beforeHooks": [
+            {
+              "title": "\"before all\" hook in \"Pruebas Frontend - Información de Bandas Musicales\"",
+              "fullTitle": "Pruebas Frontend - Información de Bandas Musicales \"before all\" hook in \"Pruebas Frontend - Información de Bandas Musicales\"",
+              "timedOut": false,
+              "duration": 1814,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// Inicializa el navegador antes de ejecutar las pruebas\ndriver = await new Builder().forBrowser('chrome').build();",
+              "err": {},
+              "uuid": "91fefdc2-69fd-4186-891b-36432167eec7",
+              "parentUUID": "451d1c89-c564-4429-98af-1a23130ccf9e",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "afterHooks": [
+            {
+              "title": "\"after all\" hook in \"Pruebas Frontend - Información de Bandas Musicales\"",
+              "fullTitle": "Pruebas Frontend - Información de Bandas Musicales \"after all\" hook in \"Pruebas Frontend - Información de Bandas Musicales\"",
+              "timedOut": false,
+              "duration": 57,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// Cierra el navegador después de ejecutar las pruebas\nawait driver.quit();",
+              "err": {},
+              "uuid": "d8e21912-399b-44a3-8a04-c36d7db23330",
+              "parentUUID": "451d1c89-c564-4429-98af-1a23130ccf9e",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "tests": [
+            {
+              "title": "GL-FR-01: Debe mostrar canciones al buscar una banda válida",
+              "fullTitle": "Pruebas Frontend - Información de Bandas Musicales GL-FR-01: Debe mostrar canciones al buscar una banda válida",
+              "timedOut": false,
+              "duration": 710,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await driver.get('http://localhost:8080');\nconst searchInput = await driver.findElement(By.css('input[type=\"text\"]'));\nawait searchInput.sendKeys('Radiohead');\nconst searchButton = await driver.findElement(By.css('button'));\nawait searchButton.click();\nawait driver.wait(until.elementLocated(By.css('table tbody tr')), 5000);\nconst rows = await driver.findElements(By.css('table tbody tr'));\nassert.ok(rows.length > 0, 'La tabla debe contener filas con canciones y álbumes relacionados.');",
+              "err": {},
+              "uuid": "0d8e76cd-423d-4431-b080-b11747654e71",
+              "parentUUID": "451d1c89-c564-4429-98af-1a23130ccf9e",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "GL-FR-02: No debe mostrar canciones al buscar una banda inexistente",
+              "fullTitle": "Pruebas Frontend - Información de Bandas Musicales GL-FR-02: No debe mostrar canciones al buscar una banda inexistente",
+              "timedOut": false,
+              "duration": 167,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await driver.get('http://localhost:8080');\nconst searchInput = await driver.findElement(By.css('input[type=\"text\"]'));\nawait searchInput.clear();\nawait searchInput.sendKeys('BandaInexistente');\nconst searchButton = await driver.findElement(By.css('button'));\nawait searchButton.click();\nconst rows = await driver.findElements(By.css('table tbody tr'));\nassert.strictEqual(rows.length, 0, 'La tabla debe estar vacía.');",
+              "err": {},
+              "uuid": "2f56d6a3-6aab-4f69-b0d7-c4abe0f20924",
+              "parentUUID": "451d1c89-c564-4429-98af-1a23130ccf9e",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "GL-FR-03: Debe mostrar un mensaje de error al buscar sin ingresar texto",
+              "fullTitle": "Pruebas Frontend - Información de Bandas Musicales GL-FR-03: Debe mostrar un mensaje de error al buscar sin ingresar texto",
+              "timedOut": false,
+              "duration": 75,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await driver.get('http://localhost:8080');\nconst searchButton = await driver.findElement(By.css('button'));\nawait searchButton.click();\nconst alert = await driver.switchTo().alert();\nconst alertText = await alert.getText();\nassert.strictEqual(alertText, 'Por favor, ingresa el nombre de la banda.', 'El mensaje de error no coincide.');\nawait alert.accept();",
+              "err": {},
+              "uuid": "6991ea35-480c-492e-a8dc-e0c0811f2878",
+              "parentUUID": "451d1c89-c564-4429-98af-1a23130ccf9e",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "GL-FR-04: Cada fila (6) debe mostrar los datos correctamente formateados",
+              "fullTitle": "Pruebas Frontend - Información de Bandas Musicales GL-FR-04: Cada fila (6) debe mostrar los datos correctamente formateados",
+              "timedOut": false,
+              "duration": 282,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await driver.get('http://localhost:8080');\nconst searchInput = await driver.findElement(By.css('input[type=\"text\"]'));\nawait searchInput.sendKeys('Radiohead');\nconst searchButton = await driver.findElement(By.css('button'));\nawait searchButton.click();\n  \nconst rows = await driver.findElements(By.css('table tbody tr'));\nfor (const row of rows) {\n  const cells = await row.findElements(By.css('td'));\n  assert.strictEqual(cells.length, 6, 'Cada fila debe tener 6 columnas.');\n}",
+              "err": {},
+              "uuid": "3d793b57-e23b-41be-b918-27ef71cf740a",
+              "parentUUID": "451d1c89-c564-4429-98af-1a23130ccf9e",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "GL-FR-05: Debe reproducir la previsualización de una canción",
+              "fullTitle": "Pruebas Frontend - Información de Bandas Musicales GL-FR-05: Debe reproducir la previsualización de una canción",
+              "timedOut": false,
+              "duration": 162,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await driver.get('http://localhost:8080');\nconst searchInput = await driver.findElement(By.css('input[type=\"text\"]'));\nawait searchInput.sendKeys('Radiohead');\nconst searchButton = await driver.findElement(By.css('button'));\nawait searchButton.click();\nconst audioElement = await driver.findElement(By.css('table tbody tr audio'));\nconst audioSrc = await audioElement.getAttribute('src');\nassert.ok(audioSrc.includes('http'), 'El enlace del audio debe ser válido.');",
+              "err": {},
+              "uuid": "0d57e3cc-8966-4135-a457-94e14ce05be6",
+              "parentUUID": "451d1c89-c564-4429-98af-1a23130ccf9e",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "GL-FR-06: Debe actualizar la tabla al realizar búsquedas consecutivas",
+              "fullTitle": "Pruebas Frontend - Información de Bandas Musicales GL-FR-06: Debe actualizar la tabla al realizar búsquedas consecutivas",
+              "timedOut": false,
+              "duration": 246,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await driver.get('http://localhost:8080');\nconst searchInput = await driver.findElement(By.css('input[type=\"text\"]'));\nawait searchInput.sendKeys('Radiohead');\nconst searchButton = await driver.findElement(By.css('button'));\nawait searchButton.click();\nawait driver.wait(until.elementLocated(By.css('table tbody tr')), 5000);\nawait searchInput.clear();\nawait searchInput.sendKeys('Coldplay');\nawait searchButton.click();\nconst rows = await driver.findElements(By.css('table tbody tr'));\nassert.ok(rows.length > 0, 'La tabla debe actualizarse con los resultados de Coldplay.');",
+              "err": {},
+              "uuid": "18e9a6d8-29c2-4db6-badf-fa9df21b25bd",
+              "parentUUID": "451d1c89-c564-4429-98af-1a23130ccf9e",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "GL-FR-07: Debe mostrar un mensaje de error si la API no responde",
+              "fullTitle": "Pruebas Frontend - Información de Bandas Musicales GL-FR-07: Debe mostrar un mensaje de error si la API no responde",
+              "timedOut": true,
+              "duration": 10002,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "await driver.get('http://localhost:8080');\nconst searchInput = await driver.findElement(By.css('input[type=\"text\"]'));\nawait searchInput.sendKeys('Radiohead');\nconst searchButton = await driver.findElement(By.css('button'));\nawait searchButton.click();\n  \n// Espera hasta que la alerta esté presente\nawait driver.wait(until.alertIsPresent(), 10000);\n  \n// Captura el texto de la alerta\nconst alert = await driver.switchTo().alert();\nconst alertText = await alert.getText();\n  \n// Verifica el mensaje de la alerta\nassert.strictEqual(\n  alertText,\n  'Ocurrió un error al buscar las canciones. Inténtalo de nuevo.',\n  'El mensaje de error no coincide.'\n);\n  \n// Acepta la alerta\nawait alert.accept();",
+              "err": {
+                "message": "Error: Timeout of 10000ms exceeded. For async tests and hooks, ensure \"done()\" is called; if returning a Promise, ensure it resolves. (/Users/carosoto/Documentos/Proyectos/itunes-back-main/tests/frontend/frontendTests.spec.js)",
+                "estack": "Error: Timeout of 10000ms exceeded. For async tests and hooks, ensure \"done()\" is called; if returning a Promise, ensure it resolves. (/Users/carosoto/Documentos/Proyectos/itunes-back-main/tests/frontend/frontendTests.spec.js)\n    at listOnTimeout (node:internal/timers:594:17)\n    at process.processTimers (node:internal/timers:529:7)",
+                "diff": null
+              },
+              "uuid": "b94f9f66-1e3b-4f41-b3c0-f200c8e0e463",
+              "parentUUID": "451d1c89-c564-4429-98af-1a23130ccf9e",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "GL-FR-10: Debe mostrar un mensaje de error al ingresar caracteres especiales",
+              "fullTitle": "Pruebas Frontend - Información de Bandas Musicales GL-FR-10: Debe mostrar un mensaje de error al ingresar caracteres especiales",
+              "timedOut": false,
+              "duration": 232,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await driver.get('http://localhost:8080');\nconst searchInput = await driver.findElement(By.css('input[type=\"text\"]'));\nawait searchInput.sendKeys('#@$');\nconst searchButton = await driver.findElement(By.css('button'));\nawait searchButton.click();\n  \n// Espera hasta que la alerta esté presente\nawait driver.wait(until.alertIsPresent(), 10000);\n  \n// Captura el texto de la alerta\nconst alert = await driver.switchTo().alert();\nconst alertText = await alert.getText();\n  \n// Verifica el mensaje de la alerta\nassert.strictEqual(\n  alertText,\n  'Ocurrió un error al buscar las canciones. Inténtalo de nuevo.',\n  'El mensaje de error no coincide.'\n);\n  \n// Acepta la alerta\nawait alert.accept();",
+              "err": {},
+              "uuid": "18e8e350-ee87-4e3d-961a-2a73d839e368",
+              "parentUUID": "451d1c89-c564-4429-98af-1a23130ccf9e",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "0d8e76cd-423d-4431-b080-b11747654e71",
+            "2f56d6a3-6aab-4f69-b0d7-c4abe0f20924",
+            "6991ea35-480c-492e-a8dc-e0c0811f2878",
+            "3d793b57-e23b-41be-b918-27ef71cf740a",
+            "0d57e3cc-8966-4135-a457-94e14ce05be6",
+            "18e9a6d8-29c2-4db6-badf-fa9df21b25bd",
+            "18e8e350-ee87-4e3d-961a-2a73d839e368"
+          ],
+          "failures": [
+            "b94f9f66-1e3b-4f41-b3c0-f200c8e0e463"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 11876,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 10000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "11.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": null,
+      "version": "6.2.0"
+    }
+  }
+}

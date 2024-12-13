@@ -1,10 +1,8 @@
 const express = require('express');
 const app = express();
-const port = 3000;
 const swaggerUi = require('swagger-ui-express');
 const swaggerSpec = require('./swaggerConfig');
 const cors = require('cors');
-
 
 // Habilitar CORS para todas las rutas y orígenes
 app.use(cors());
@@ -19,8 +17,14 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 const indexRoute = require('./routes/routes');
 app.use('/', indexRoute);
 
-// Arrancar el servidor
-app.listen(port, () => {
-  console.log(`Servidor corriendo en http://localhost:${port}`);
-  console.log(`Documentación disponible en http://localhost:${port}/api-docs`);
-});
+// Exportar app para pruebas
+module.exports = app;
+
+// Iniciar el servidor solo si no está en modo prueba
+if (require.main === module) {
+  const port = 3000;
+  app.listen(port, () => {
+    console.log(`Servidor corriendo en http://localhost:${port}`);
+    console.log(`Documentación disponible en http://localhost:${port}/api-docs`);
+  });
+}

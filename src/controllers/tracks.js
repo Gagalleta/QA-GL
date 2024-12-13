@@ -51,6 +51,8 @@ async function getTracksByBand(req, res) {
       albumes: albums,
       canciones: songs
     }
+    console.log(songs); // Verificar los datos transformados
+    console.log(albums); // Verificar los álbumes
 
     // Guarda el result en caché
     cache.set(cacheKey, result)
