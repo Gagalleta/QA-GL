@@ -1,4 +1,4 @@
-# Proyecto: Información de Bandas Musicales - Backend
+# Proyecto: Información de Bandas Musicales - QA
 
 ## **Descripción General**
 Este proyecto backend permite consultar canciones de una banda musical a partir de la API pública de iTunes y guardar canciones como favoritas. Incluye pruebas automatizadas para backend y frontend organizadas en diferentes carpetas.
