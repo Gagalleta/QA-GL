@@ -1,5 +1,3 @@
-Aquí tienes el archivo README.md actualizado, tomando en cuenta que las pruebas de frontend y backend están en carpetas separadas y que también se incluye el reporte de Mochawesome:
-
 # Proyecto: Información de Bandas Musicales - Backend
 
 ## **Descripción General**
